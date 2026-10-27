@@ -2,7 +2,7 @@
 
 ### Current members
 
-**Andres M**
+**Andres Monasterios**
 andresmonasterios@ucmerced.edu
 
 **Zachary Amith**

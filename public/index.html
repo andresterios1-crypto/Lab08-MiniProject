@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>ACME University - Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACME University</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="box">
-    <h1>ACME University</h1>
-
-    <div class="login-form">
-      <label for="username">Username</label>
-      <input type="text" id="username">
-
-      <label for="password">Password</label>
-      <input type="password" id="password">
-
-      <button class="sign-in" onclick="login()">Sign in</button>
-      <div id="message" class="error"></div>
-    </div>
-  </div>
-
-  <script src="login.js"></script>
+  <main class="box">
+    <header class="top-bar">
+      <div class="who"><span id="welcome"></span><div id="loggedIn" class="logged-in"></div></div>
+      <h1>ACME University</h1>
+      <button id="signOut" hidden>Sign out</button>
+    </header>
+    <nav id="navigation" class="tabs"></nav>
+    <section id="screen" class="panel"></section>
+  </main>
+  <script src="/app.js"></script>
 </body>
 </html>

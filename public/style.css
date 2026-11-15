@@ -216,3 +216,6 @@ button {
   color: white;
   margin-bottom: 10px;
 }
+
+/* Keep multi-line course lists readable in the admin tables. */
+#screen td { white-space: pre-line; }

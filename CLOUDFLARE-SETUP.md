@@ -1,6 +1,6 @@
 # Flask and D1 on Cloudflare
 
-The `cloudflare-deployment` branch runs the existing student and teacher interfaces with Flask routes backed by D1. The admin screen replaces Flask-Admin's SQLAlchemy model views with D1-backed user, course, and enrollment management. `app.py` and `static/` preserve the original application for reference. Wrangler requires the original `requirements.txt` to be renamed to `requirements.legacy.txt`; Worker dependencies are in `pyproject.toml`.
+The frontend is a single button-driven interface in `public/index.html` and `public/app.js`. Its screen state selects the login, student, teacher, and admin views, while Flask routes use D1 for data. The admin view provides user, course, and enrollment management. `app.py` and `static/` preserve the original application for reference. Wrangler requires the original `requirements.txt` to be renamed to `requirements.legacy.txt`; Worker dependencies are in `pyproject.toml`.
 
 ## Local setup
 

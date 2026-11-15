@@ -3,7 +3,7 @@ from functools import wraps
 from html import escape
 from urllib.parse import urlsplit
 
-from flask import Flask, Response, g, redirect, request
+from flask import Flask, g, redirect, request
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from pyodide.ffi import run_sync, to_js
 from js import crypto, Object, Uint8Array
@@ -219,11 +219,8 @@ TABLES = {'users': ('user', ('username', 'name', 'role', 'password')),
 @app.get('/admin')
 @app.get('/admin/')
 def admin_page():
-    if not g.user or g.user['role'] != 'admin':
-        return redirect('/')
-    assets = request.environ['workers.env'].ASSETS
-    result = run_sync(assets.fetch('https://assets.local/admin.html'))
-    return Response(run_sync(result.bytes()), status=result.status, headers=result.headers)
+    # Preserve existing bookmarks; the single interface chooses a view by role.
+    return redirect('/')
 
 
 @app.route('/api/admin/<kind>', methods=['GET', 'POST'])

@@ -99,6 +99,8 @@ fetch("/api/me")
     // just the first name, like "Welcome Chuck!"
     let firstName = user.name.split(" ")[0];
     document.getElementById("welcome").innerHTML = "Welcome " + firstName + "!";
+    // small line showing which account is logged in
+    document.getElementById("loggedIn").innerHTML = "Logged in as " + user.username + " (" + user.role + ")";
     showYourCourses();
   })
   .catch(function () {

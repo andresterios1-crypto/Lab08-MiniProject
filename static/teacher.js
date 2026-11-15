@@ -76,6 +76,8 @@ fetch("/api/me")
     let parts = user.name.split(" ");
     let lastName = parts[parts.length - 1];
     document.getElementById("welcome").innerHTML = "Welcome Dr " + lastName + "!";
+    // small line showing which account is logged in
+    document.getElementById("loggedIn").innerHTML = "Logged in as " + user.username + " (" + user.role + ")";
     showCourses();
   })
   .catch(function () {

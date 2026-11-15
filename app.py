@@ -170,7 +170,8 @@ def logout():
 @app.route("/api/me")
 @login_required
 def me():
-    return {"id": current_user.id, "name": current_user.name, "role": current_user.role}
+    return {"id": current_user.id, "username": current_user.username,
+            "name": current_user.name, "role": current_user.role}
 
 
 # ---------------- STUDENT ----------------
@@ -331,18 +332,34 @@ class SecureIndex(AdminIndexView):
 class UserView(SecureView):
     column_list = ["username", "name", "role"]
 
+    # Role is a dropdown with the three personas instead of a box you type in
+    form_choices = {
+        "role": [("student", "student"), ("teacher", "teacher"), ("admin", "admin")]
+    }
+
     def on_model_change(self, form, model, is_created):
         if not model.password_hash.startswith(("scrypt:", "pbkdf2:")):
             model.password_hash = generate_password_hash(model.password_hash)
 
 
+# the Teacher dropdown only lists users whose role is "teacher"
+class CourseView(SecureView):
+    form_args = {
+        "teacher": {"query_factory": lambda: User.query.filter_by(role="teacher")}
+    }
+
+
+# the Student dropdown only lists users whose role is "student"
 class EnrollmentView(SecureView):
     column_list = ["student", "course", "grade"]
+    form_args = {
+        "student": {"query_factory": lambda: User.query.filter_by(role="student")}
+    }
 
 
 admin = Admin(app, name="ACME Admin", index_view=SecureIndex())
 admin.add_view(UserView(User, db.session))
-admin.add_view(SecureView(Course, db.session))
+admin.add_view(CourseView(Course, db.session))
 admin.add_view(EnrollmentView(Enrollment, db.session))
 admin.add_link(MenuLink(name="Sign out", url="/logout"))
 

@@ -1,0 +1,13 @@
+name = "lab08-miniproject"
+main = "src/worker.py"
+compatibility_date = "2026-11-14"
+compatibility_flags = ["python_workers"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lab08-enrollment"
+database_id = "fd9a9d43-9db6-4370-944b-71e596391b64"
